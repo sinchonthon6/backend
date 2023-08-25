@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 
 # Create your models here.
 class Event(models.Model):
@@ -31,6 +32,7 @@ class Event(models.Model):
     pay= models.CharField(max_length=50)
     detail=models.TextField()
     contact= models.CharField(max_length=500)
+    user = models.ForeignKey(to=get_user_model(), related_name='account', on_delete=models.CASCADE)
     
     def __str__(self):
         return "{}: {} - {}".format(self.id,self.title,self.school)
