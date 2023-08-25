@@ -28,7 +28,7 @@ SECRET_KEY = "django-insecure-0js!rzy)rcw8c5ni)$855#h2ywz=h81$z55gwx@10%-8t#a*m8
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-# AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = 'accounts.User'
 
 # Application definition
 
@@ -59,7 +59,7 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'ROTATE_REFRESH_TOKENS': True,
     'AUTH_HEADER_TYPES': ('Bearer',),
-    'TOKEN_USER_CLASS': 'account.User',
+    'TOKEN_USER_CLASS': 'accounts.User',
 }
 
 
@@ -125,7 +125,7 @@ WSGI_APPLICATION = "unicorn.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'unicorn3',
+        'NAME': 'unicorn4',
         'USER': 'sh',
         'PASSWORD': 'seok4591',
         'HOST': 'mutsa-db.cszfp3a4or6x.ap-northeast-2.rds.amazonaws.com',
