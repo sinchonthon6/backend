@@ -2,7 +2,7 @@ from rest_framework import serializers
 from events.models import Event
 from .permissions import IsOwnerOrReadOnly
 
-class EventSerializer(serializers.ModelSerializer):
+class Event_Serializer(serializers.ModelSerializer):
     user_has_permission = serializers.SerializerMethodField()
 
     class Meta:

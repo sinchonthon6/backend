@@ -41,7 +41,7 @@ class EventListView(views.APIView):
         if finish!="all":
             events =events.filter(start_day__lte=finish)
         
-        events.order_by('start_day')
+        events =events.order_by('start_day')
 
         serializer=EventSerializer(events,many=True)
 
