@@ -30,8 +30,9 @@ class EventListView(views.APIView):
         start=request.data['start']
         finish=request.data['finish']
 
-        events = Event.objects.all()
-
+        current_date = date.today()
+        events = Event.objects.all().filter(finish_day__gte=current_date)
+        
         if category!="all":
             events =events.filter(category=category)
         if school!="all":
