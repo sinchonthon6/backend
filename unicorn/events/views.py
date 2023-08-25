@@ -5,6 +5,7 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 from .models import Event
 from .serializers import EventSerializer
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 """
@@ -13,7 +14,10 @@ API명 : 행사등록 API
 작성자 : 남석현
 """
 class EventCreateAPIView(APIView):
+    permission_classes = (IsAuthenticated,)
     def post(self, request, format=None):
+        user = request.user
+        request.data['user'] = user.id
         serializer = EventSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()

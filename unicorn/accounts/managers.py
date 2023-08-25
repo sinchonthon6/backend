@@ -19,7 +19,7 @@ class CustomUserManager(BaseUserManager):
         superuser = self.create_user(
             email=email,
             password=password,
-            oauth_id=oauth_id,
+            oauth_id=-1,
         )
         superuser.is_staff = True
         superuser.is_superuser = True
