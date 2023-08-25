@@ -51,6 +51,7 @@ class EventListView(views.APIView):
         events =events.order_by('start_day')
 
         serializer=EventSerializer(events,many=True)
+        print(serializer.data)
 
         return Response({'check':True, 'data': serializer.data}, status=status.HTTP_200_OK)
     

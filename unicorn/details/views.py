@@ -7,13 +7,13 @@ from rest_framework.response import Response
 from django.http import JsonResponse
 from datetime import datetime
 from rest_framework.views import APIView
-from .permissions import IsOwnerOrReadOnly
+# from .permissions import IsOwnerOrReadOnly
 from .serializers import Event_Serializer
 import re
 from rest_framework.permissions import IsAuthenticated
 from homes.serializers import EventSerializer
 from rest_framework.permissions import AllowAny
-
+from datetime import date
 
 class SearchView(views.APIView):
     def get(self, request):
@@ -52,17 +52,24 @@ class EventDetailsView(APIView):
         except Event.DoesNotExist:
             return Response({"error": "Event not found"}, status=status.HTTP_404_NOT_FOUND)
         
-        serializer = Event_Serializer(event,context={'request': request})
-        user_has_permission = IsOwnerOrReadOnly().has_object_permission(request, None, event)
+        serializer = Event_Serializer(event)
+        if event.user == request.user:
+            user_has_permission=True
+        else:
+            user_has_permission=False
+
+        today=date.today()
+        d_day = (event.start_day - today).days
+
         
         response_data = {
             "check":True,
             "data": serializer.data,
-            # "permission": user_has_permission
+            "permission": user_has_permission,
+            "dday":d_day
         }
         
         return Response(response_data, status=status.HTTP_200_OK)
-        # return Response(status=status.HTTP_200_OK)
 
 
 
