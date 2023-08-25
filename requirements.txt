@@ -20,5 +20,6 @@ sqlparse==0.4.4
 typing_extensions==4.7.1
 urllib3==2.0.4
 
+mysqlclient
 django-cors-headers
 Pillow
