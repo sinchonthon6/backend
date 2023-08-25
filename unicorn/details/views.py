@@ -42,8 +42,8 @@ class SearchView(views.APIView):
     # return JsonResponse({'check':True, 'data': []}, status=status.HTTP_200_OK)
 
 class EventDetailsView(APIView):
-    permission_classes = [IsOwnerOrReadOnly]
-    # permission_classes = [IsAuthenticated]
+    # permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, event_id, format=None):
         try:
