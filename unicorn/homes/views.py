@@ -26,10 +26,14 @@ class HomeView(views.APIView):
 class EventListView(views.APIView):
     def get(self, request):
         print(request.data)
-        category=request.data['category']
-        school =request.data['school']
-        start=request.data['start']
-        finish=request.data['finish']
+        # category=request.data['category']
+        # school =request.data['school']
+        # start=request.data['start']
+        # finish=request.data['finish']
+        category= request.GET.get('category')
+        school= request.GET.get('school')
+        start= request.GET.get('start')
+        finish= request.GET.get('finish')
 
         current_date = date.today()
         events = Event.objects.all().filter(finish_day__gte=current_date)
