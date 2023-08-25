@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db.models import Q
 from events.models import Event
 from rest_framework import status
 from rest_framework.response import Response
@@ -21,7 +22,7 @@ def search(request, search):
             qs_list = []
             current_date = datetime.now().date()
             for keyword in keywords:
-                qs = Event.objects.filter(title__icontains=keyword)
+                qs = Event.objects.filter(Q(title__icontains=keyword) | Q(circle__icontains=keyword))
                 for event in qs:
                     if event.finish_day >= current_date:
                         event.dday = (event.finish_day - current_date).days
