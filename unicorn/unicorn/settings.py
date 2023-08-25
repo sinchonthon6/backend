@@ -125,7 +125,7 @@ WSGI_APPLICATION = "unicorn.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'unicorn',
+        'NAME': 'unicorn3',
         'USER': 'sh',
         'PASSWORD': 'seok4591',
         'HOST': 'mutsa-db.cszfp3a4or6x.ap-northeast-2.rds.amazonaws.com',
