@@ -12,6 +12,7 @@ from .serializers import Event_Serializer
 import re
 from rest_framework.permissions import IsAuthenticated
 from homes.serializers import EventSerializer
+from rest_framework.permissions import AllowAny
 
 
 class SearchView(views.APIView):
@@ -43,7 +44,7 @@ class SearchView(views.APIView):
 
 class EventDetailsView(APIView):
     # permission_classes = [IsOwnerOrReadOnly]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get(self, request, event_id, format=None):
         try:
