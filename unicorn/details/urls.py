@@ -6,6 +6,6 @@ from .views import *
 app_name='details'      
 
 urlpatterns = [
-    path('search/', views.search, name='keyword'),
+    path('search/<str:search>/', views.search, name='keyword'),
     path('<int:event_id>/', EventDetailsView.as_view(), name='event-details'),
 ]

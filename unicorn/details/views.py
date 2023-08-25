@@ -9,9 +9,9 @@ from .permissions import IsOwnerOrReadOnly
 from .serializers import EventSerializer
 import re
 
-def search(request):
-    if request.method == 'POST':
-        search_query = request.POST.get('search')
+def search(request, search):
+    if search:
+        search_query = request.GET.get('search')
         
         if search_query:
             #문자, 숫자 제외 처리해주기
