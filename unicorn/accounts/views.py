@@ -85,8 +85,9 @@ class OAuthTokenObtainView(APIView):
                 status=status.HTTP_404_NOT_FOUND,
             )
         user_info = response.json()
+        print(user_info)
         oauth_id = user_info["id"]
-        email = user_info["email"]
+        email = user_info["kakao_account"]["email"]
         print(email)
 
         # OAuth 인증으로 가입한 사용자 정보 탐색
@@ -96,6 +97,7 @@ class OAuthTokenObtainView(APIView):
         # 기존에 가입된 유저가 없으면 임시로 저장하고 새로 가입
         except User.DoesNotExist:
             user = User.objects.create_user(email=email, password=None, oauth_id=oauth_id)
+            user.is_register = True
 
         # JWT 발급, 응답
         refresh = RefreshToken.for_user(user)
@@ -113,3 +115,8 @@ class UserInfoView(APIView):
     #로그인
     def get(self, request):
         return Response(UserSerializer(request.user).data)
+
+def get_user_id(token):
+    decoded_token = AccessToken(token)
+    user_id = decoded_token.payload.get('user_id')
+    return user_id

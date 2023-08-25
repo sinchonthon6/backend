@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import OAuthTokenObtainView, UserInfoView, KakaoSignInView
+from .views import OAuthTokenObtainView, KakaoSignInView, UserInfoView
 from rest_framework_simplejwt.views import TokenRefreshView
 
 app_name='accounts'      
