@@ -25,6 +25,7 @@ class HomeView(views.APIView):
     
 class EventListView(views.APIView):
     def get(self, request):
+        print(request.data)
         category=request.data['category']
         school =request.data['school']
         start=request.data['start']
@@ -32,7 +33,7 @@ class EventListView(views.APIView):
 
         current_date = date.today()
         events = Event.objects.all().filter(finish_day__gte=current_date)
-        
+
         if category!="all":
             events =events.filter(category=category)
         if school!="all":
