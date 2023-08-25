@@ -5,5 +5,6 @@ from .views import *
 app_name='events'      
 
 urlpatterns = [
+    path('', EventCreateAPIView.as_view(), name='create-event')
 
 ]
